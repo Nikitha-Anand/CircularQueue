@@ -1,4 +1,3 @@
-import java.util.Objects;
 import java.util.Scanner;
 
 public class CircularQueue {
@@ -27,12 +26,12 @@ public class CircularQueue {
             System.out.println("Dequeue Unsuccessful! Queue is Empty!");
             return "null";
         }
-        if(HeadPointer >= 9) {
-            HeadPointer = 0;
-        }
         HeadPointer = HeadPointer + 1;
         NumberOfItems = NumberOfItems - 1;
         System.out.println("Dequeue Successful!");
+        if(HeadPointer >= 9) {
+            HeadPointer = 0;
+        }
         return QueueArray[HeadPointer - 1];
     }
 
@@ -53,5 +52,6 @@ public class CircularQueue {
                 System.out.println("Sorry! It is not a valid operation! Try Enqueue/Dequeue or \"NO\" to exit");
             }
         }while(!Operation.equalsIgnoreCase("no"));
+        System.out.println("Program terminated.");
     }
 }
