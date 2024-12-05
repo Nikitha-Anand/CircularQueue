@@ -8,6 +8,7 @@ public class CircularQueue {
 
     public static Boolean Enqueue(String DataToAdd){
         if(NumberOfItems == 10){
+            System.out.println("Queue if full; Unsuccessful attempt to add Data Item");
             return false;
         }
         QueueArray[TailPointer] = DataToAdd;
@@ -17,11 +18,13 @@ public class CircularQueue {
             TailPointer = TailPointer + 1;
         }
         NumberOfItems = NumberOfItems + 1;
+        System.out.println("Data Item Successfully added to the queue");
         return true;
     }
 
     public static String Dequeue(){
         if(TailPointer == 0){
+            System.out.println("Dequeue Unsuccessful");
             return "FALSE";
         }
         HeadPointer = HeadPointer + 1;
@@ -30,16 +33,18 @@ public class CircularQueue {
 
     public static void main(String[] args){
         Scanner keyboard = new Scanner(System.in);
-        for (int i = 0; i < 11; i++) {
-            System.out.println("Enter an item to the queue: ");
-            String DataItem = keyboard.next();
-            if(Enqueue(DataItem)){
-                System.out.println("Data Item Successfully added to the queue");
-            }else{
-                System.out.println("Queue if full; Unsuccessful attempt to add Data Item");
+        String DataItem;
+        String Operation;
+        do{
+            System.out.println("Enter Operation to perform (Enqueue/Dequeue) or no to stop: ");
+            Operation = keyboard.next();
+            if(Operation.toLowerCase().equals("enqueue")){
+                System.out.println("Enter an item to the queue: ");
+                DataItem = keyboard.next();
+                Enqueue(DataItem);
+            } else if (Operation.toLowerCase().equals("dequeue")) {
+                System.out.println("Dequeued Value: " + Dequeue());
             }
-        }
-        System.out.println(Dequeue());
-        System.out.println(Dequeue());
+        }while(!Operation.equals("no"));
     }
 }
